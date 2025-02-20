@@ -1,0 +1,27 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: infra-root
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: oci://__registry-url__/roots/infra
+  provider: azure
+  ref:
+    tag: dev
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: infra-root
+  namespace: flux-system
+spec:
+  sourceRef:
+    kind: OCIRepository
+    name: infra-root
+  interval: 1m
+  retryInterval: 5m
+  path: ./dev
+  prune: true
+  wait: true
+  timeout: 2m
