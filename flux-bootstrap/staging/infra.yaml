@@ -5,8 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  url: oci://__registry-url__/roots/infra
-  provider: azure
+  url: oci://ghcr.io/203-cloud/demo-flux-infra/deploy
   ref:
     tag: staging
 ---
